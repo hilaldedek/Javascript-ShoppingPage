@@ -3,6 +3,7 @@ const shippingCostFree=150;
 const cart=document.querySelector(".ul");
 const cartList=[];
 // console.log(document.querySelector(".plus").parentElement.parentElement.previousElementSibling.previousElementSibling.innerText);
+// console.log(document.querySelector(".minus").parentElement.parentElement.previousElementSibling.previousElementSibling.innerText);
 
 window.addEventListener("load",()=>{
     localStorage.setItem("shippingCost",shippingCost);
@@ -18,6 +19,10 @@ productsDiv.addEventListener("click",(event)=>{
         console.log("minus btn clicked");
         if(event.target.parentElement.nextElementSibling.children[0].innerText!=1){
             event.target.parentElement.nextElementSibling.children[0].innerText--;
+            const name2=document.querySelector(".minus").parentElement.parentElement.previousElementSibling.previousElementSibling.innerText;
+            var x=cartList.indexOf(name2);
+            const y=cartList.splice(x,1);
+            console.log(cartList);
         }
         else{
             if(confirm("product will be removed?")){
@@ -29,14 +34,15 @@ productsDiv.addEventListener("click",(event)=>{
         console.log("plus button is clicked");
         event.target.parentElement.previousElementSibling.children[0].innerText++;
         const name=event.target.parentElement.parentElement.previousElementSibling.previousElementSibling.innerText;
-        if(cartList.length==0){
-            cartList.push(name);
-        }
-        else{
-            while(cartList.indexOf(name)==-1){
-                cartList.push(name);
-            }
-        }
+        cartList.push(name);
+        // if(cartList.length==0){
+        //     cartList.push(name);
+        // }
+        // else{
+        //     while(cartList.indexOf(name)==-1){
+        //         cartList.push(name);
+        //     }
+        // }
         const cartP=document.createElement("p");
         const cartLi=document.createElement("li");
         console.log(cartList);
