@@ -19,23 +19,29 @@ productsDiv.addEventListener("click",(event)=>{
         console.log("minus btn clicked");
         if(event.target.parentElement.nextElementSibling.children[0].innerText!=1){
             event.target.parentElement.nextElementSibling.children[0].innerText--;
-            const name2=document.querySelector(".minus").parentElement.parentElement.previousElementSibling.previousElementSibling.innerText;
-            var x=cartList.indexOf(name2);
-            const y=cartList.splice(x,1);
-            console.log(cartList);
+            console.log(document.querySelector(".minus").parentElement.parentElement.parentElement.children[0].innerText);
+             const name2=document.querySelector(".minus").parentElement.parentElement.parentElement.children[0].innerText;
+        console.log(name2);
+        var x=cartList.indexOf(`${name2}`);
+        console.log(x);
+            
         }
         else{
             if(confirm("product will be removed?")){
                 
             }
         }
+       
+        // delete cartList[]
+        
+
     }
     else if(event.target.classList.contains("plus")){
         console.log("plus button is clicked");
         event.target.parentElement.previousElementSibling.children[0].innerText++;
         const name=event.target.parentElement.parentElement.previousElementSibling.previousElementSibling.innerText;
         cartList.push(name);
-        // if(cartList.length==0){
+                // if(cartList.length==0){
         //     cartList.push(name);
         // }
         // else{
