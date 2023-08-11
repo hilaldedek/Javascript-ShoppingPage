@@ -4,9 +4,10 @@ const shippingCostFree=150;
 const cart=document.querySelector(".ul");
 const cartList=[];
 const nameList=[];
-var nameListCounter=-1;
+var nameListCounter=0;
+var counter=-1;
 var total=0;
-
+var buffer=0;
 
 window.addEventListener("load",()=>{
     localStorage.setItem("shippingCost",shippingCost);
@@ -45,7 +46,6 @@ productsDiv.addEventListener("click",(event)=>{
         }
     }
     else if(event.target.classList.contains("plus")){
-        nameListCounter++;
         console.log("plus button is clicked");
         event.target.parentElement.previousElementSibling.children[0].innerText++;
         const name=event.target.parentElement.parentElement.previousElementSibling.previousElementSibling.innerText;
@@ -53,7 +53,7 @@ productsDiv.addEventListener("click",(event)=>{
         total+=Number(total1);
         console.log(total);
         cartList.push(name);
-
+        buffer=nameList.length;
         if(nameList.length==0){
             nameList.push(name);
                 }
@@ -64,20 +64,42 @@ productsDiv.addEventListener("click",(event)=>{
                 }
         console.log(nameList);
         nameListCounter=nameList.length;
+        
         console.log(nameListCounter);
       
        do{
             const a= event.target.parentElement.previousElementSibling.children[0].innerText;
-            const cartP=document.createElement("p");
-            cartP.innerText=a;
              const cartH4=document.createElement("h4");
-            
+            const cartH3=document.createElement("h3");
              const cartLi=document.createElement("li");
-             const pTextNode=document.createTextNode(name);
-           cartH4.appendChild(pTextNode);
+
+             //HATA BAŞLANGICI
+             if(buffer==nameList.length){
+                const pTextNode2=document.createTextNode(a);
+                console.log("eşitiz");
+                pTextNode2.innerText=a;
+                console.log("a=",a);
+                cartH3.appendChild(pTextNode2);
+                console.log(a);
+                
+                
+                
+            }
+            else if(buffer<nameList.length){
+                counter++;
+                console.log("girdim");
+                const pTextNode=document.createTextNode(nameList[counter]);
+                const pTextNode2=document.createTextNode(a);
+                console.log("a=",a);
+                cartH4.appendChild(pTextNode);
+                cartH3.appendChild(pTextNode2);
+            }
+             
+           
             cartLi.appendChild(cartH4);
-            cartLi.appendChild(cartP);
+            cartLi.appendChild(cartH3);
             cart.appendChild(cartLi);
+            //HATA BİTİŞİ
        }while(nameListCounter<nameList.length);
        
         
