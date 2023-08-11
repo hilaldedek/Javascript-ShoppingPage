@@ -3,11 +3,10 @@ const shippingCost=20;
 const shippingCostFree=150;
 const cart=document.querySelector(".ul");
 const cartList=[];
+const nameList=[];
+var nameListCounter=-1;
 var total=0;
 
-// console.log(document.querySelector(".plus").parentElement.parentElement.previousElementSibling.previousElementSibling.innerText);
-// console.log(document.querySelector(".minus").parentElement.parentElement.previousElementSibling.previousElementSibling.innerText);
-// console.log(document.querySelector(".minus").parentElement.parentElement.parentElement.children[1].children[0].innerText);
 
 window.addEventListener("load",()=>{
     localStorage.setItem("shippingCost",shippingCost);
@@ -30,7 +29,6 @@ productsDiv.addEventListener("click",(event)=>{
             if(confirm("product will be removed?")){
                     event.target.parentElement.nextElementSibling.children[0].innerText--;
                     var x=cartList.indexOf(`${name2}`);
-                    // console.log(x);
                     delete cartList[x];
                     }
 
@@ -47,32 +45,45 @@ productsDiv.addEventListener("click",(event)=>{
         }
     }
     else if(event.target.classList.contains("plus")){
-
+        nameListCounter++;
         console.log("plus button is clicked");
         event.target.parentElement.previousElementSibling.children[0].innerText++;
         const name=event.target.parentElement.parentElement.previousElementSibling.previousElementSibling.innerText;
         const total1=event.target.parentElement.parentElement.parentElement.children[1].children[0].innerText
         total+=Number(total1);
         console.log(total);
-        // console.log(name);
         cartList.push(name);
-                // if(cartList.length==0){
-        //     cartList.push(name);
-        // }
-        // else{
-        //     while(cartList.indexOf(name)==-1){
-        //         cartList.push(name);
-        //     }
-        // }
+
+        if(nameList.length==0){
+            nameList.push(name);
+                }
+                else{
+                    while(nameList.indexOf(name)==-1){
+                        nameList.push(name);
+                    }
+                }
+        console.log(nameList);
+        nameListCounter=nameList.length;
+        console.log(nameListCounter);
       
-       const cartP=document.createElement("p");
-        const cartLi=document.createElement("li");
-        const pTextNode=document.createTextNode(name);
-        cartP.appendChild(pTextNode);
-        cartLi.appendChild(cartP);
-        cart.appendChild(cartLi);
+       do{
+            const a= event.target.parentElement.previousElementSibling.children[0].innerText;
+            const cartP=document.createElement("p");
+            cartP.innerText=a;
+             const cartH4=document.createElement("h4");
+            
+             const cartLi=document.createElement("li");
+             const pTextNode=document.createTextNode(name);
+           cartH4.appendChild(pTextNode);
+            cartLi.appendChild(cartH4);
+            cartLi.appendChild(cartP);
+            cart.appendChild(cartLi);
+       }while(nameListCounter<nameList.length);
+       
+        
+        
         console.log(cartList);
-        // console.log(cartLi);
+        
     }
     else if(event.target.classList.contains("remove")){
         console.log("remove button is clicked");
@@ -81,13 +92,5 @@ productsDiv.addEventListener("click",(event)=>{
         console.log("other element is clicked");
     }
 })
-// console.log(cartList.length);
-// for(let i=0; i<=cartList.length;i++){
-//     const cartP=document.createElement("p");
-//     const cartLi=document.createElement("li");
-//     const pTextNode=document.createTextNode(cartList[i]);
-//     console.log(cartLi);
-//     cartP.appendChild(pTextNode);
-//     cartLi.appendChild(cartP);
-// }
+
 
