@@ -17,9 +17,9 @@ window.addEventListener("load",()=>{
     sessionStorage.setItem("shippingCost",shippingCost);
     sessionStorage.setItem("shippingCostFree",shippingCostFree);
 });
-
 const productsDiv= document.querySelector(".products");
 productsDiv.addEventListener("click",(event)=>{
+    ctr=0;
     if(event.target.classList.contains("minus")){
         console.log("minus btn clicked");
         const name2=event.target.parentElement.parentElement.parentElement.children[0].innerText;
@@ -32,6 +32,8 @@ productsDiv.addEventListener("click",(event)=>{
                     event.target.parentElement.nextElementSibling.children[0].innerText--;
                     var x=cartList.indexOf(`${name2}`);
                     delete cartList[x];
+                    const deleteUrun=document.getElementById(`delete${name2}`);
+                    deleteUrun.remove();
                     }
 
         }
@@ -41,6 +43,14 @@ productsDiv.addEventListener("click",(event)=>{
             var x=cartList.indexOf(`${name2}`);
             console.log(x);
             delete cartList[x];
+            const urun1=document.getElementById(`${name2}`);
+            for(let i=0;i<cartList.length;i++){
+                if(cartList[i]==name2){
+                    ctr++;
+                }
+            }
+            urun1.innerText=ctr;
+
             console.log(cartList);
             total -= total2;
             console.log(total);
@@ -64,6 +74,7 @@ productsDiv.addEventListener("click",(event)=>{
             const cartLi1=document.createElement("li");
             const cartH1=document.createElement("h3");
             const cartH2=document.createElement("h5");
+            cartLi1.setAttribute('id',`delete${name}`)
             cartH2.setAttribute('id',`${name}`);
             cartH1.innerText=name;
             cartH2.innerText=a;
@@ -76,6 +87,7 @@ productsDiv.addEventListener("click",(event)=>{
             const cartLi2=document.createElement("li");
             const cartH3=document.createElement("h3");
             const cartH4=document.createElement("h5");
+            cartLi2.setAttribute('id',`delete${name}`)
             cartH4.setAttribute('id',`${name}`);
             cartH3.innerText=name;
             cartH4.innerText=a;
@@ -93,78 +105,23 @@ productsDiv.addEventListener("click",(event)=>{
             const urun=document.getElementById(`${name}`);
             urun.innerText=ctr;
             
-        }
-      
-        
-
-
-
-
-
-
-
-
-
-
-
-    //     if(nameList.length==0){
-    //         nameList.push(name);
-    //         }
-    //     else{
-    //         if(nameList.indexOf(name)==-1){
-    //             nameList.push(name);
-    //         }
-    //         }
-    //     console.log(nameList);
-    //     nameListCounter=nameList.length;
-        
-    //     console.log(nameListCounter);
-      
-    //          const cartLi=document.createElement("li");
-    //    do{
-    //         const a= event.target.parentElement.previousElementSibling.children[0].innerText;
-    //          const cartH4=document.createElement("h4");
-    //         const cartH3=document.createElement("h3");
-
-    //          //HATA BAŞLANGICI
-    //          if(buffer==nameList.length){
-    //             const pTextNode2=document.createTextNode(a);
-    //             console.log("eşitiz");
-    //             pTextNode2.innerText=a;
-    //             console.log("a=",a);
-    //             cartH3.appendChild(pTextNode2);
-    //             console.log(a);
-                
-                
-                
-    //         }
-    //         else if(buffer<nameList.length){
-    //             counter++;
-    //             console.log("girdim");
-    //             const pTextNode=document.createTextNode(nameList[counter]);
-    //             const pTextNode2=document.createTextNode(a);
-    //             console.log("a=",a);
-    //             cartH4.appendChild(pTextNode);
-    //             cartH3.appendChild(pTextNode2);
-    //         }
-             
-           
-    //         cartLi.appendChild(cartH4);
-    //         cartLi.appendChild(cartH3);
-    //         cart.appendChild(cartLi);
-    //         //HATA BİTİŞİ
-    //    }while(nameListCounter<nameList.length);
-       
-        
-        
+        }     
         console.log(cartList);
         
     }
     else if(event.target.classList.contains("remove")){
         console.log("remove button is clicked");
+        var b=event.target.parentElement.previousElementSibling.children[1].children[0];
+        const name3=event.target.parentElement.parentElement.children[0].innerText;
+        console.log(name3);
+        console.log("b",b);
+        b.innerText=0;
+        const deleteUrun2=document.getElementById(`delete${name3}`);
+        deleteUrun2.remove();
     }
     else{
         console.log("other element is clicked");
+        
     }
 })
 
