@@ -9,7 +9,7 @@ var counter=-1;
 var total=0;
 var ctr=0;
 var urunctr=0;
-
+const totalCost=document.getElementById("total");
 window.addEventListener("load",()=>{
     localStorage.setItem("shippingCost",shippingCost);
     localStorage.setItem("shippingCostFree",shippingCostFree);
@@ -30,6 +30,7 @@ productsDiv.addEventListener("click",(event)=>{
         console.log("minus btn clicked");
         const name2=event.target.parentElement.parentElement.parentElement.children[0].innerText;
         const total2=event.target.parentElement.parentElement.parentElement.children[1].children[0].innerText;
+
         if(event.target.parentElement.nextElementSibling.children[0].innerText==0){
            alert("sepetinizde böyle bir ürün yoktur.");
         }
@@ -42,6 +43,7 @@ productsDiv.addEventListener("click",(event)=>{
                     deleteUrun.remove();
                     total -= total2;
                     console.log(total);
+                    totalCost.innerText=`${total}$`;
                     for(let i=0;i<nameList.length;i++){
                         var y=nameList.indexOf(`${name2}`);
                         delete nameList[y];
@@ -64,6 +66,7 @@ productsDiv.addEventListener("click",(event)=>{
             urun1.innerText=ctr;
             console.log(cartList);
             total -= total2;
+            totalCost.innerText=`${total}$`;
             console.log(total);
         }
     }
@@ -74,6 +77,7 @@ productsDiv.addEventListener("click",(event)=>{
         const name=event.target.parentElement.parentElement.previousElementSibling.previousElementSibling.innerText;
         const total1=event.target.parentElement.parentElement.parentElement.children[1].children[0].innerText
         total+=Number(total1);
+        totalCost.innerText=`${total}$`;
         console.log(total);
         cartList.push(name);
         const a= event.target.parentElement.previousElementSibling.children[0].innerText;
@@ -86,6 +90,8 @@ productsDiv.addEventListener("click",(event)=>{
             const cartH2=document.createElement("h5");
             cartLi1.setAttribute('id',`delete${name}`)
             cartH2.setAttribute('id',`${name}`);
+            cartLi1.setAttribute("class","d-flex justify-content-center");
+            cartH2.setAttribute("class","fs-3 mx-1")
             cartH1.innerText=name;
             cartH2.innerText=a;
             cartLi1.appendChild(cartH1);
@@ -100,6 +106,8 @@ productsDiv.addEventListener("click",(event)=>{
             const cartH4=document.createElement("h5");
             cartLi2.setAttribute('id',`delete${name}`)
             cartH4.setAttribute('id',`${name}`);
+            cartLi2.setAttribute("class","d-flex justify-content-center");
+            cartH4.setAttribute("class","fs-3")
             cartH3.innerText=name;
             cartH4.innerText=a;
             cartLi2.appendChild(cartH3);
@@ -136,12 +144,8 @@ productsDiv.addEventListener("click",(event)=>{
                 var y=cartList.indexOf(`${name3}`);
                 delete cartList[y];
             }
-            
-            for(let i=0;i<nameList.length;i++){
-                var y=nameList.indexOf(`${name3}`);
-                delete nameList[y];
-            }
             console.log(total);
+            totalCost.innerText=`${total}$`;
             console.log("CARTlist",cartList);
             console.log("namelist",nameList);
             b.innerText=0;
