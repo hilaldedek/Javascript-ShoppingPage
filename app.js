@@ -28,7 +28,6 @@ const productsDiv= document.querySelector(".products");
 productsDiv.addEventListener("click",(event)=>{
     ctr=0;
     if(event.target.classList.contains("minus")){
-        console.log("minus btn clicked");
         const name2=event.target.parentElement.parentElement.parentElement.children[0].innerText;
         const total2=event.target.parentElement.parentElement.parentElement.children[1].children[0].innerText;
 
@@ -51,7 +50,6 @@ productsDiv.addEventListener("click",(event)=>{
                     const filteredArray = nameList.filter(function (element) {
                         return element !== undefined;
                         });
-                    console.log(filteredArray);
                     if(filteredArray.length==0){
                         alertMessage.innerText="Your cart is empty";
                         alertMessage.setAttribute("style","color:#FF6666; background-color:  #fff6e0;padding: 1rem;");
@@ -63,19 +61,15 @@ productsDiv.addEventListener("click",(event)=>{
                     }
                     else if(total<150 && filteredArray.length!=0){
                        totalCost.innerText=`${total}$ +20$(cargo)`;
-                       console.log("KARGO ÖDENECEK");
                     }
                     else if(total<=150 &&filteredArray.length!=0){
                         totalCost.innerText=`${total}$ (cargo free)`;
                     }
                 }
-                
         }
         else{
             event.target.parentElement.nextElementSibling.children[0].innerText--;
-            console.log(name2);
             var x=cartList.indexOf(`${name2}`);
-            // console.log(x);
             delete cartList[x];
             const urun1=document.getElementById(`${name2}`);
             for(let i=0;i<cartList.length;i++){
@@ -83,25 +77,20 @@ productsDiv.addEventListener("click",(event)=>{
                     ctr++;
                 }
             }
-
             urun1.innerText=`x${ctr}`;
-            console.log(cartList);
             total -= total2;
             const totalwrite3=document.getElementById(`total${name2}`);
             const d=ctr*total2;
             totalwrite3.innerText=`= ${d}$`;
             if(total<150){
                 totalCost.innerText=`${total}$ +20$(cargo)`;
-                console.log("KARGO ÖDENECEK");
              }
              else{
                  totalCost.innerText=`${total}$ (cargo free)`;
              }
-            console.log(total);
         }
     }
     else if(event.target.classList.contains("plus")){
-        console.log("plus button is clicked");
         alertMessage.remove();
         event.target.parentElement.previousElementSibling.children[0].innerText++;
         const name=event.target.parentElement.parentElement.previousElementSibling.previousElementSibling.innerText;
@@ -109,19 +98,15 @@ productsDiv.addEventListener("click",(event)=>{
         total+=Number(total1);
         if(total<150){
             totalCost.innerText=`${total}$ +20$(cargo)`;
-            console.log("KARGO ÖDENECEK");
          }
          else{
              totalCost.innerText=`${total}$ (cargo free)`;
          }
-        // totalCost.innerText=`${total}$`;
-        console.log(total);
         cartList.push(name);
         const a= event.target.parentElement.previousElementSibling.children[0].innerText;
         ctr=0;
         if(nameList.length==0){
             nameList.push(name);
-            console.log("namelist",nameList);
             const cartLi1=document.createElement("li");
             const cartH1=document.createElement("h3");
             const cartH2=document.createElement("h5");
@@ -142,7 +127,6 @@ productsDiv.addEventListener("click",(event)=>{
         }
         else if(nameList.indexOf(name)==-1){
             nameList.push(name);
-            console.log("namelist",nameList);
             const cartLi2=document.createElement("li");
             const cartH3=document.createElement("h3");
             const cartH4=document.createElement("h5");
@@ -167,29 +151,21 @@ productsDiv.addEventListener("click",(event)=>{
                     ctr++;
                 }
             }
-            // console.log(ctr);
             const urun=document.getElementById(`${name}`);
             urun.innerText=`x${ctr}`;
             const totalwrite=document.getElementById(`total${name}`);
             const c=ctr*total1;
-            console.log("c",c);
             totalwrite.innerText=`= ${c}$`;
-            
         }     
-        console.log("CARTlist",cartList);
-        console.log("NAMElist",nameList);
-        
     }
     else if(event.target.classList.contains("remove")){
         var b=event.target.parentElement.previousElementSibling.children[1].children[0];
         const name3=event.target.parentElement.parentElement.children[0].innerText;
         const total3=event.target.parentElement.parentElement.children[1].children[0].innerText;
         if(confirm(`${name3} will be removed?`)){
-            console.log("remove button is clicked");
             for(let j=0;j<cartList.length;j++){
                 if(cartList[j]==`${name3}`){
                         total-=total3;
-                        console.log(total);
                     }
             }
             for(let i=0;i<cartList.length;i++){
@@ -200,10 +176,6 @@ productsDiv.addEventListener("click",(event)=>{
                 var y=nameList.indexOf(`${name3}`);
                 delete nameList[y];
             }
-            console.log(total);
-            // totalCost.innerText=`${total}$`;
-            console.log("CARTlist",cartList);
-            console.log("namelist",nameList);
             b.innerText=0;
             const deleteUrun2=document.getElementById(`delete${name3}`);
             deleteUrun2.remove();
@@ -211,7 +183,6 @@ productsDiv.addEventListener("click",(event)=>{
         const filteredArray = nameList.filter(function (element) {
             return element !== undefined;
             });
-        console.log(filteredArray);
         if(filteredArray.length==0){
             alertMessage.innerText="Your cart is empty";
             alertMessage.setAttribute("style","color:#FF6666; background-color:  #fff6e0; padding: 1rem;");
@@ -223,16 +194,9 @@ productsDiv.addEventListener("click",(event)=>{
         }
         else if(total<150 && filteredArray.length!=0){
            totalCost.innerText=`${total}$ +20$(cargo)`;
-           console.log("KARGO ÖDENECEK");
         }
         else if(total<=150 &&filteredArray.length!=0){
             totalCost.innerText=`${total}$ (cargo free)`;
         }
     }
-    else{
-        console.log("other element is clicked");
-        
-    }
 })
-
-
