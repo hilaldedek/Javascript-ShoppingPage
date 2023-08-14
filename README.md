@@ -2,7 +2,9 @@
 <h3 align="center">Shopping Page 🛒🛍️</h3>
 
 <p align="center">
+  
   [LIVE](https://hilaldedek.github.io/Javascript-ShoppingPage/)
+  
 </p>
 
 
