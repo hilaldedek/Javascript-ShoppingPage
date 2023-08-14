@@ -21,7 +21,7 @@ const alertP=document.getElementById("alert");
 const alertMessage=document.createElement("p");
 if(nameList.length==0){
             alertMessage.innerText="Your cart is empty";
-            alertMessage.setAttribute("style","color:#FF8551;");
+            alertMessage.setAttribute("style","color:#FF8551; background-color:  #fff6e0; padding: 1rem;");
             alertP.appendChild(alertMessage);
         }
 const productsDiv= document.querySelector(".products");
@@ -54,7 +54,7 @@ productsDiv.addEventListener("click",(event)=>{
                     console.log(filteredArray);
                     if(filteredArray.length==0){
                         alertMessage.innerText="Your cart is empty";
-                        alertMessage.setAttribute("style","color:#FF6666;");
+                        alertMessage.setAttribute("style","color:#FF6666; background-color:  #fff6e0;padding: 1rem;");
                         alertP.appendChild(alertMessage);
                     }
                     if(filteredArray.length==0){
@@ -214,7 +214,7 @@ productsDiv.addEventListener("click",(event)=>{
         console.log(filteredArray);
         if(filteredArray.length==0){
             alertMessage.innerText="Your cart is empty";
-            alertMessage.setAttribute("style","color:#FF6666;");
+            alertMessage.setAttribute("style","color:#FF6666; background-color:  #fff6e0; padding: 1rem;");
             alertP.appendChild(alertMessage);
         }
         if(filteredArray.length==0){
