@@ -32,7 +32,7 @@ productsDiv.addEventListener("click",(event)=>{
         const total2=event.target.parentElement.parentElement.parentElement.children[1].children[0].innerText;
 
         if(event.target.parentElement.nextElementSibling.children[0].innerText==0){
-           alert("sepetinizde böyle bir ürün yoktur.");
+           alert("There is no such item in your cart.");
         }
         else if(event.target.parentElement.nextElementSibling.children[0].innerText==1){
             if(confirm(`${name2} will be removed?`)){
